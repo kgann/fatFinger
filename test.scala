@@ -2,13 +2,13 @@ import fatfinger.FatFinger._
 
 object Test {
   def main(args: Array[String]) = {
-    val sample = "testing"
+    val sample = "testing it down"
     val data = List(
-      "testing",
-      "twsting",
+      "testing it down",
+      "trsting it down",
       "trdt",
       "twde",
-      "sslso"
+      "mqpavql"
     )
     data.foreach{ s => println(probability(sample, s))}
   }
