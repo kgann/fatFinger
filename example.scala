@@ -1,4 +1,4 @@
-import fatfinger.FatFinger._
+import fatfinger._
 
 object Example {
   def main(args: Array[String]) = {
@@ -15,7 +15,7 @@ object Example {
       " "
     )
     println(sample + ":")
-    data map{ s => s + " -> " + probability(sample, s) + "%" } foreach println
+    data map{ s => s + " -> " + FatFinger.probability(sample, s) + "%" } foreach println
   }
 }
 
