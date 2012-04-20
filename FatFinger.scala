@@ -36,18 +36,18 @@ object FatFinger {
 
   private final val qwertyMaxDistance = charDistance('q', ' ')
 
-  def probability(s1: String, s2: String):Double = {
+  def probability(s1: String, s2: String) = {
     (1 - (stringDistance(s1, s2) / (scala.math.max(s1.length, s2.length) * qwertyMaxDistance))) * 100
   }
 
-  private def stringDistance(s1: String, s2: String):Double = {
+  private def stringDistance(s1: String, s2: String) = {
     s1.zip(s2).foldLeft(0.0){ (accum, tup) =>
-      accum + charDistance(tup._1, tup._2)
+      accum + charDistance(tup)
     } + scala.math.abs(s1.size - s2.size) * qwertyMaxDistance
   }
 
-  private def charDistance(c1: Char, c2: Char):Double = {
-    (qwertyMap(c1.toLower), qwertyMap(c2.toLower)) match {
+  private def charDistance(tup: Tuple2[Char, Char]) = {
+    coordinates(tup._1, tup._2) match {
       case ((x1, y1), (x2, y2)) => {
         if(scala.math.abs(x1 - x2) == 1 && scala.math.abs(y1 - y2) == 1)
           1
@@ -56,5 +56,7 @@ object FatFinger {
       }
     }
   }
+
+  private def coordinates(tup: Tuple2[Char, Char]) = (qwertyMap(tup._1.toLower), qwertyMap(tup._2.toLower))
 
 }//FatFinger
