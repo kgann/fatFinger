@@ -29,10 +29,12 @@ object FatFinger {
     'v' -> (4, 3),
     'b' -> (5, 3),
     'n' -> (6, 3),
-    'm' -> (7, 3)
+    'm' -> (7, 3),
+
+    ' ' -> (5, 4)
   )
 
-  private final val qwertyMaxDistance = charDistance('q', 'm')
+  private final val qwertyMaxDistance = charDistance('q', ' ')
 
   def probability(s1: String, s2: String):Double = {
     (1 - (stringDistance(s1, s2) / (scala.math.max(s1.length, s2.length) * qwertyMaxDistance))) * 100
@@ -40,12 +42,8 @@ object FatFinger {
 
   private def stringDistance(s1: String, s2: String):Double = {
     s1.zip(s2).foldLeft(0.0){ (accum, tup) =>
-      tup match {
-        case (' ', _) => accum
-        case (_, ' ') => accum
-        case (c1, c2) => accum + charDistance(c1, c2)
-      }
-    }
+      accum + charDistance(tup._1, tup._2)
+    } + scala.math.abs(s1.size - s2.size) * qwertyMaxDistance
   }
 
   private def charDistance(c1: Char, c2: Char):Double = {

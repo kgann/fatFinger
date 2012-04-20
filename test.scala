@@ -8,9 +8,11 @@ object Test {
       "trsting it down",
       "trdt",
       "twde",
-      "mqpavql"
+      "mqpavql",
+      "treating it good"
     )
-    data.foreach{ s => println(probability(sample, s))}
+    data map(probability(sample, _)) foreach println
+    // data.foreach{ s => println(probability(sample, s))}
   }
 }
 
