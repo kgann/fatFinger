@@ -50,7 +50,7 @@ object FatFinger {
   }
 
   private def charDistance(tup: Tuple2[Char, Char]) = {
-    coordinates(tup._1, tup._2) match {
+    coordinates(tup) match {
       case ((x1, y1), (x2, y2)) => {
         if(scala.math.abs(x1 - x2) == 1 && scala.math.abs(y1 - y2) == 1)
           1
